@@ -1,20 +1,22 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\GraphQL\Mutations;
 
-use Nodesol\LaraQL\Attributes\Type;
 use Nodesol\LaraQL\Attributes\Mutation;
+use Nodesol\LaraQL\Attributes\Type;
 
 #[Type(
-    columns_override:[
-        'message'=>"String!"
+    columns_override: [
+        'message' => 'String!',
     ]
 )]
 #[Mutation(
-    name:' ',
-    query:'@field(resolver:"Logout")',
-    inputs:[],
-    directives:['@guard']
+    name: ' ',
+    query: '@field(resolver:"Logout")',
+    inputs: [],
+    directives: ['@guard']
 )]
 class Logout
 {
@@ -25,6 +27,7 @@ class Logout
 
         auth()->user()->currentAccessToken()->delete();
         $data['message'] = 'Logout Successfully';
+
         return $data;
 
     }
