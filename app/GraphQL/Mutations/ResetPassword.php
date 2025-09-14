@@ -1,11 +1,13 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\GraphQL\Mutations;
 
 use GraphQL\Error\UserError;
 use Illuminate\Support\Facades\Hash;
-use Nodesol\LaraQL\Attributes\Type;
 use Nodesol\LaraQL\Attributes\Mutation;
+use Nodesol\LaraQL\Attributes\Type;
 
 #[Type()]
 #[Mutation(
@@ -22,8 +24,8 @@ use Nodesol\LaraQL\Attributes\Mutation;
 final readonly class ResetPassword
 {
     /** @param  array{}  $args */
-    public function __construct(public ?string $message)
-    {}
+    public function __construct(public ?string $message) {}
+
     public function __invoke(null $_, array $args)
     {
         $user = auth()->user();
@@ -34,6 +36,6 @@ final readonly class ResetPassword
         }
         $user->update($args);
 
-        return ['message'=>'Password updated'];
+        return ['message' => 'Password updated'];
     }
 }
